@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'screens/menu_principal.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Practica 07',
+      title: 'Práctica calificada',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.blue,

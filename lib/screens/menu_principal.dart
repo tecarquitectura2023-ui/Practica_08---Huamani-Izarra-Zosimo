@@ -1,9 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'screen_promedio.dart';
-import 'screen_pago.dart';
-import 'screen_descuento.dart';
-import 'screen_combustible.dart';
+import 'screen_nombre.dart';
+import 'screen_correo.dart';
+import 'screen_edad.dart';
+import 'screen_dni.dart';
+import 'screen_password.dart';
+import 'screen_estudiante.dart';
 
 class MenuPrincipal extends StatelessWidget {
   const MenuPrincipal({super.key});
@@ -12,70 +14,159 @@ class MenuPrincipal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Práctica 07'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
+        toolbarHeight: 80,
+        title: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Calculadoras',
+            Text(
+              'PRÁCTICA CALIFICADA',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 19,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 25),
-
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push( // abre otra pantalla
-                    context,
-                    MaterialPageRoute( // prepara la navegacion 
-                      builder: (context) => const ScreenPromedio(), // crea y muestra la pantalla del promedio
-                    ),
-                  );
-                },
-                child: const Text('1. Promedio académico'),
+            Text(
+              '(Formulario, validación y personalización)',
+              style: TextStyle(
+                fontSize: 12,
               ),
+            ),
+          ],
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
 
-            ElevatedButton(
-              onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ScreenPago(),
-                ),
-              );
-            },
-              child: const Text('2. Pago de trabajador'),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const Icon(
+              Icons.assignment,
+              size: 80,
+              color: Colors.blue,
+            ),
+            const SizedBox(height: 10),
+
+            const Text(
+              'FORMULARIOS Y VALIDACIONES',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
 
-            ElevatedButton(
-              onPressed: () {
+            const SizedBox(height: 25),
+
+            _crearBoton(
+              context,
+              '1. Formulario de nombres',
+              Icons.person,
+              () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ScreenDescuento(),
+                    builder: (context) => const ScreenNombre(),
                   ),
                 );
               },
-              child: const Text('3. Descuento de productos'),
             ),
 
-            ElevatedButton(
-              onPressed: () {
+            _crearBoton(
+              context,
+              '2. Formulario de correo',
+              Icons.email,
+              () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ScreenCombustible(),
+                    builder: (context) => const ScreenCorreo(),
                   ),
-                );         
+                );
               },
-              child: const Text('4. Consumo de combustible'),
+            ),
+
+            _crearBoton(
+              context,
+              '3. Registro de edad',
+              Icons.cake,
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenEdad(),
+                  ),
+                );
+              },
+            ),
+
+            _crearBoton(
+              context,
+              '4. Registro de DNI',
+              Icons.badge,
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenDni(),
+                  ),
+                );
+              },
+            ),
+
+            _crearBoton(
+              context,
+              '5. Registro de contraseña',
+              Icons.lock,
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenPassword(),
+                  ),
+                );
+              },
+            ),
+
+            _crearBoton(
+              context,
+              '6. Formulario de estudiante',
+              Icons.school,
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenEstudiante(),
+                  ),
+                );
+              },
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _crearBoton(
+    BuildContext context,
+    String titulo,
+    IconData icono,
+    VoidCallback accion,
+  ) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ElevatedButton.icon(
+        onPressed: accion,
+        icon: Icon(icono),
+        label: Text(titulo),
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(16),
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          alignment: Alignment.centerLeft,
         ),
       ),
     );
